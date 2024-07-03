@@ -1,0 +1,15 @@
+{
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json"
+  },
+  "rules": {
+    "valid-jsdoc": "off",
+    "jsdoc/check-tag-names": "off",
+    "no-console": "off",
+    "linebreak-style": "off",
+    "quotes": "off",
+    "@typescript-eslint/quotes": "off",
+    "no-useless-escape": "off"
+  },
+  "extends": "distube"
+}
