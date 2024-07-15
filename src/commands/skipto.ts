@@ -13,6 +13,23 @@ export default class SkipToCommand extends Command {
   async onChatInput(interaction: ChatInputCommandInteraction<"cached">) {
     try {
       const position = interaction.options.getInteger("position", true);
+      const queue = await this.distube.getQueue(interaction);
+      if (!queue || queue.songs.length < +position || position < 0) {
+        interaction.reply({
+          embeds: [
+            new EmbedBuilder()
+              .setColor("#e06666")
+              .setTitle(`🚧 | エラーが発生しました`)
+              .setDescription(`スキップ位置が範囲外です。\'/queue\'で現在のキューを確認できます。`)
+              .setTimestamp()
+              .setAuthor({
+                name: `${interaction.client.user.displayName}`,
+                iconURL: `${interaction.client.user.displayAvatarURL()}`,
+              }),
+          ],
+        });
+        return;
+      }
       const song = await this.distube.jump(interaction, position);
       interaction.reply({
         embeds: [
