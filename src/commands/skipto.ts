@@ -14,7 +14,7 @@ export default class SkipToCommand extends Command {
     try {
       const position = interaction.options.getInteger("position", true);
       const queue = await this.distube.getQueue(interaction);
-      if (!queue || queue.songs.length < +position || position < 0) {
+      if (!queue || queue.songs.length <= position || position < 0) {
         interaction.reply({
           embeds: [
             new EmbedBuilder()
